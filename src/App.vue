@@ -1,19 +1,19 @@
 <script>
 import AppHeader from './components/AppHeader.vue';
-import AppSearch from './components/AppSearch.vue';
+import AppMain from './components/AppMain.vue';
 
 export default {
   name: 'App',
   components: {
     AppHeader,
-    AppSearch
+    AppMain
   },
 }
 </script>
 
 <template>
   <AppHeader />
-  <AppSearch />
+  <AppMain />
 </template>
 
 <style scoped></style>
