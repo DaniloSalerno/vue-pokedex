@@ -13,15 +13,30 @@ export default {
 
         addOrRemovePokemon() {
 
+            // recupero l'array dal localStorage o creo un array vuoto se non esiste
+            const pokemonNamesFromLocalStorage = JSON.parse(localStorage.getItem('pokemon_names')) || [];
+
             // se il nome del pokemon cercato è incluso nella lista dei miei pokemon
             if (this.state.myPokemonList.includes(this.state.pokemon.name)) {
 
                 //elimino il nome del pokemon dalla lista dei miei pokemon
                 this.state.myPokemonList.splice(this.state.myPokemonList.indexOf(this.state.pokemon.name), 1)
 
+                // elimino il pokemon dall'array di pokemon da inserire nel local storage
+                pokemonNamesFromLocalStorage.splice(pokemonNamesFromLocalStorage.indexOf(this.state.pokemon.name), 1)
+
+                // aggiungo il nuovo array al local storage
+                localStorage.setItem('pokemon_names', JSON.stringify(pokemonNamesFromLocalStorage));
+
             } else {
                 // aggiungo il nome del pokemon alla lista dei miei pokemon
                 this.state.myPokemonList.push(this.state.pokemon.name)
+
+                // aggiungo il nome del nuovo pokemon all'array
+                pokemonNamesFromLocalStorage.push(this.state.pokemon.name);
+
+                //l'array viene salvato nel local storage
+                localStorage.setItem('pokemon_names', JSON.stringify(pokemonNamesFromLocalStorage))
 
             }
 

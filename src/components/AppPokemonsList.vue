@@ -5,11 +5,19 @@ export default {
     name: 'AppPokemonsList',
     data() {
         return {
-            state
+            state,
+
+            pokemons: JSON.parse(localStorage.getItem("pokemon_names")),
         };
     },
     methods: {
+        setPokemonList() {
+            this.state.myPokemonList = JSON.parse(localStorage.getItem("pokemon_names"))
+        }
     },
+    mounted() {
+        this.setPokemonList()
+    }
 }
 </script>
 
@@ -18,7 +26,7 @@ export default {
 
         <div id="pokemon_list_container">
 
-            <h3> My pokemons</h3>
+            <h3 @click="getNewPokemonsList()"> My pokemons</h3>
 
             <div v-for="pokemon in this.state.myPokemonList" @click="this.state.fetchData(this.state.baseUrl + pokemon)"
                 class="pokemon_name">
