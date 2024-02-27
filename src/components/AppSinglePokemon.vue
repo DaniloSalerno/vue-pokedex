@@ -99,7 +99,7 @@ export default {
         background-color: grey;
         width: 300px;
         margin: auto;
-        padding: 1rem;
+        padding: 0.5rem;
 
         div {
             padding: 1rem;

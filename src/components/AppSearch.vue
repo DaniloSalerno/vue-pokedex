@@ -28,6 +28,8 @@ export default {
                 // aggiungo il nuovo array al local storage
                 localStorage.setItem('pokemon_names', JSON.stringify(pokemonNamesFromLocalStorage));
 
+                this.pokemon = ''
+
             } else {
                 // aggiungo il nome del pokemon alla lista dei miei pokemon
                 this.state.myPokemonList.push(this.state.pokemon.name)
@@ -38,8 +40,15 @@ export default {
                 //l'array viene salvato nel local storage
                 localStorage.setItem('pokemon_names', JSON.stringify(pokemonNamesFromLocalStorage))
 
+                this.pokemon = ''
+
             }
 
+        },
+
+        fetchPokemon() {
+            this.state.fetchData(this.state.baseUrl + this.pokemon);
+            this.pokemon = ''
         }
     }
 }
@@ -47,13 +56,19 @@ export default {
 
 <template>
     <div id="search">
-        <div>
 
-            <input type="text" name="name" id="name" placeholder="Type Pokemon Name" v-model="this.pokemon" required>
+        <div class="input_search">
 
-            <button class="btn" @click="this.state.fetchData(this.state.baseUrl + this.pokemon)"
-                :disabled="this.pokemon.trim() === ''">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" placeholder="Type Pokemon Name"
+                    v-model="this.pokemon" required @keyup.enter="fetchPokemon">
+                <label for="floatingInput">Type Pokemon Name</label>
+            </div>
+
+            <!-- <input type="text" name="name" id="name" placeholder="Type Pokemon Name" v-model="this.pokemon" required> -->
+
+            <button class="btn border-0" @click="fetchPokemon" :disabled="this.pokemon.trim() === ''">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-search"
                     viewBox="0 0 16 16">
                     <path
                         d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
@@ -63,7 +78,7 @@ export default {
         </div>
 
         <div id="options_button">
-            <button @click="addOrRemovePokemon()" v-if="this.state.pokemon">
+            <button @click="addOrRemovePokemon()" v-if="this.state.pokemon" class="btn btn-outline-dark">
                 <div v-if="!this.state.myPokemonList.includes(this.state.pokemon.name)">Catch it!
                 </div>
                 <div v-else>Remove</div>
@@ -78,5 +93,12 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    .input_search {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+    }
 }
 </style>
