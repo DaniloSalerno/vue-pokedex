@@ -17,7 +17,7 @@ export const state = reactive({
         axios
             .get(url)
             .then(response => {
-                // console.log(response.data);
+                //console.log(response.data);
 
                 this.pokemon = response.data
                 this.imgFront = response.data.sprites.front_default

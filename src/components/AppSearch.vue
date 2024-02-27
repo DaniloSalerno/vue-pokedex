@@ -10,9 +10,21 @@ export default {
         }
     },
     methods: {
+
         addOrRemovePokemon() {
-            this.state.myPokemonList.push(this.state.pokemon)
-            console.log(this.state.myPokemonList);
+
+            // se il nome del pokemon cercato è incluso nella lista dei miei pokemon
+            if (this.state.myPokemonList.includes(this.state.pokemon.name)) {
+
+                //elimino il nome del pokemon dalla lista dei miei pokemon
+                this.state.myPokemonList.splice(this.state.myPokemonList.indexOf(this.state.pokemon.name), 1)
+
+            } else {
+                // aggiungo il nome del pokemon alla lista dei miei pokemon
+                this.state.myPokemonList.push(this.state.pokemon.name)
+
+            }
+
         }
     }
 }
@@ -22,9 +34,10 @@ export default {
     <div id="search">
         <div>
 
-            <input type="text" name="name" id="name" placeholder="Type Pokemon Name" v-model="this.pokemon">
+            <input type="text" name="name" id="name" placeholder="Type Pokemon Name" v-model="this.pokemon" required>
 
-            <button class="btn" @click="this.state.fetchData(this.state.baseUrl + this.pokemon)">
+            <button class="btn" @click="this.state.fetchData(this.state.baseUrl + this.pokemon)"
+                :disabled="this.pokemon.trim() === ''">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
                     viewBox="0 0 16 16">
                     <path
@@ -35,9 +48,10 @@ export default {
         </div>
 
         <div id="options_button">
-            <button @click="addOrRemovePokemon()">
-                <div>Catch it!</div>
-                <div class="d-none">Remove</div>
+            <button @click="addOrRemovePokemon()" v-if="this.state.pokemon">
+                <div v-if="!this.state.myPokemonList.includes(this.state.pokemon.name)">Catch it!
+                </div>
+                <div v-else>Remove</div>
             </button>
         </div>
     </div>

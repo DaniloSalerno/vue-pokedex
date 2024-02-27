@@ -1,17 +1,11 @@
 <script>
 import AppSearch from './AppSearch.vue';
 import AppSinglePokemon from './AppSinglePokemon.vue';
-import { state } from '../state'
+import AppPokemonsList from './AppPokemonsList.vue';
 
 export default {
     name: 'AppMain',
-    data() {
-        return {
-            state
-        };
-    },
-    methods: {},
-    components: { AppSearch, AppSinglePokemon }
+    components: { AppSearch, AppSinglePokemon, AppPokemonsList }
 }
 </script>
 
@@ -27,15 +21,8 @@ export default {
                     <AppSinglePokemon />
                 </div>
 
-                <section id="pokemon_list" class="col">
-                    <div id="pokemon_list_container">
-                        <h3> My pokemons</h3>
+                <AppPokemonsList />
 
-                        <div v-for="pokemon in this.state.myPokemonList">
-                            {{ pokemon.name }}
-                        </div>
-                    </div>
-                </section>
             </div>
 
         </div>
@@ -53,15 +40,5 @@ export default {
         border-right: 0.5rem solid rgb(119, 0, 0);
     }
 
-    #pokemon_list {
-        padding: 3rem;
-        border-left: 0.5rem solid rgb(119, 0, 0);
-
-        #pokemon_list_container {
-            background-color: white;
-            padding: 1rem 0.5rem;
-            height: 100%;
-        }
-    }
 }
 </style>
