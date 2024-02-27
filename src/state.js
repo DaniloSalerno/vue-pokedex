@@ -11,6 +11,8 @@ export const state = reactive({
 
     stats: [],
 
+    myPokemonList: [],
+
     fetchData(url) {
         axios
             .get(url)
