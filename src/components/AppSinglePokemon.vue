@@ -19,9 +19,11 @@ export default {
     <div v-if="this.state.pokemon" id="pokemon_view">
 
         <div id="pokemon_thumb">
+
             <div>
                 <img width="125" :src=this.state.imgFront alt="">
             </div>
+
         </div>
 
 
@@ -29,17 +31,33 @@ export default {
 
             <div>
 
-                <div>name: {{ this.state.pokemon.name }} </div>
+                <div>
+                    <span>name:</span> {{ this.state.pokemon.name }}
+                </div>
 
-                <span>types:</span>
+                <div class="d-flex gap-1">
 
-                <ul>
-                    <li v-for="typeName in this.state.pokemon.types">{{ typeName.type.name }}</li>
-                </ul>
+                    <span>types:</span>
 
-                <div>height: {{ this.state.pokemon.height }}</div>
+                    <ul class="d-flex list-unstyled gap-4 m-0">
+                        <li v-for="typeName in this.state.pokemon.types">
+                            {{ typeName.type.name }}
+                        </li>
+                    </ul>
 
-                <div>weight: {{ this.state.pokemon.weight }}</div>
+                </div>
+
+                <div>
+
+                    <span>height:</span> {{ this.state.pokemon.height }}
+
+                </div>
+
+                <div>
+
+                    <span>weight:</span> {{ this.state.pokemon.weight }}
+
+                </div>
 
             </div>
 
@@ -49,9 +67,19 @@ export default {
 
                 <div>
 
-                    <div v-for="stat in this.state.stats">
-                        {{ stat.name }} : {{ stat.base_stat }}
+                    <div v-for="stat in this.state.stats" class="d-flex align-items-center">
+
+                        <div class="col-3">
+                            {{ stat.name }}
+                        </div>
+
+                        <div class="bar w-100 position-relative">
+                            <div :style="`width: ${stat.base_stat > 100 ? 100 : stat.base_stat}%`" class="progress_bar">
+                            </div>
+                        </div>
+
                     </div>
+
 
                 </div>
 
@@ -92,7 +120,32 @@ export default {
         border: 2px solid black;
         border-radius: 0.5rem;
 
-        font-size: 0.85rem;
+        text-transform: capitalize;
+
+        span {
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+
+        .bar {
+            background-color: grey;
+            border: 1px solid black;
+            height: 10px;
+
+            .progress_bar {
+                position: absolute;
+                left: 0;
+                top: 0;
+
+                height: 100%;
+                background-color: red;
+            }
+        }
+
+        h3 {
+            margin-bottom: 0;
+            margin-top: 1rem;
+        }
     }
 }
 </style>

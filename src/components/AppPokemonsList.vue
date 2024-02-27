@@ -16,6 +16,7 @@ export default {
         }
     },
     mounted() {
+        this.state.fetchData(this.state.baseUrl + 'pikachu')
         this.setPokemonList()
     }
 }
