@@ -9,6 +9,8 @@ export const state = reactive({
 
     imgFront: '',
 
+    imgBack: '',
+
     stats: [],
 
     myPokemonList: [],
@@ -21,6 +23,7 @@ export const state = reactive({
 
                 this.pokemon = response.data
                 this.imgFront = response.data.sprites.front_default
+                this.imgBack = response.data.sprites.back_default
 
                 this.stats = response.data.stats.map(el => {
                     const name = el.stat.name

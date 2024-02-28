@@ -28,11 +28,15 @@ export default {
                 // aggiungo il nuovo array al local storage
                 localStorage.setItem('pokemon_names', JSON.stringify(pokemonNamesFromLocalStorage));
 
+                // pulisco l'input
                 this.pokemon = ''
 
             } else {
                 // aggiungo il nome del pokemon alla lista dei miei pokemon
                 this.state.myPokemonList.push(this.state.pokemon.name)
+
+                // orgino i pokemon in ordine alfabetico
+                this.state.myPokemonList.sort()
 
                 // aggiungo il nome del nuovo pokemon all'array
                 pokemonNamesFromLocalStorage.push(this.state.pokemon.name);
@@ -40,6 +44,7 @@ export default {
                 //l'array viene salvato nel local storage
                 localStorage.setItem('pokemon_names', JSON.stringify(pokemonNamesFromLocalStorage))
 
+                // pulisco l'input
                 this.pokemon = ''
 
             }

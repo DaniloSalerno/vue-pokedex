@@ -5,9 +5,7 @@ export default {
     name: 'AppPokemonsList',
     data() {
         return {
-            state,
-
-            pokemons: JSON.parse(localStorage.getItem("pokemon_names")),
+            state
         };
     },
     methods: {
@@ -28,6 +26,10 @@ export default {
         <h3> My pokemons</h3>
 
         <div id="pokemon_list_container">
+
+            <div v-if="this.state.myPokemonList.length === 0">
+                <h3>There are no Pokemon yet</h3>
+            </div>
 
             <div v-for="pokemon in this.state.myPokemonList" @click="this.state.fetchData(this.state.baseUrl + pokemon)"
                 class="pokemon_name">
@@ -54,7 +56,7 @@ export default {
         padding: 1rem 0.5rem;
         height: 400px;
 
-        overflow-y: scroll;
+        overflow-y: auto;
 
         .pokemon_name {
             cursor: pointer;

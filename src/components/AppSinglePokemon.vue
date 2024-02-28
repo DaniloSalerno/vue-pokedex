@@ -5,12 +5,23 @@ export default {
     data() {
         return {
             state,
+
+            img: true
         }
     },
     methods: {
 
+        toggleImg() {
+            if (this.img) {
+                this.img = false
+            } else {
+                this.img = true
+            }
+        },
+
     },
     mounted() {
+        setInterval(this.toggleImg, 2000)
     }
 }
 </script>
@@ -20,8 +31,9 @@ export default {
 
         <div id="pokemon_thumb">
 
-            <div>
-                <img width="125" :src=this.state.imgFront alt="">
+            <div style="height: 175px;">
+                <img width="125" :src=this.state.imgFront alt="immagine del pokemon frontale" v-if="this.img">
+                <img width="125" :src=this.state.imgBack alt="immagine del pokemon posteriore" v-else>
             </div>
 
         </div>
@@ -73,7 +85,7 @@ export default {
                             {{ stat.name }}
                         </div>
 
-                        <div class="bar w-100 position-relative">
+                        <div class="bar">
                             <div :style="`width: ${stat.base_stat > 100 ? 100 : stat.base_stat}%`" class="progress_bar">
                             </div>
                         </div>
@@ -131,6 +143,8 @@ export default {
             background-color: grey;
             border: 1px solid black;
             height: 10px;
+            width: 100%;
+            position: relative;
 
             .progress_bar {
                 position: absolute;
@@ -139,6 +153,8 @@ export default {
 
                 height: 100%;
                 background-color: red;
+
+                transition: width 2s;
             }
         }
 
