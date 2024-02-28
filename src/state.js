@@ -5,14 +5,17 @@ export const state = reactive({
 
     baseUrl: 'https://pokeapi.co/api/v2/pokemon/',
 
+    // oggetto che conterrà il singolo pokemon
     pokemon: null,
 
     imgFront: '',
 
     imgBack: '',
 
+    // statistiche del pokemon
     stats: [],
 
+    // lista di pokemon catturati
     myPokemonList: [],
 
     fetchData(url) {

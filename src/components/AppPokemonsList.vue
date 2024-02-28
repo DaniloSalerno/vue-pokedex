@@ -44,7 +44,7 @@ export default {
 <style lang="scss" scoped>
 #pokemon_list {
     padding: 3rem;
-    border-left: 0.5rem solid rgb(119, 0, 0);
+    border-left: 0;
 
     h3 {
         text-transform: uppercase;
@@ -62,6 +62,12 @@ export default {
             cursor: pointer;
             text-transform: capitalize;
         }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #pokemon_list {
+        border-left: 0.5rem solid rgb(119, 0, 0);
     }
 }
 </style>

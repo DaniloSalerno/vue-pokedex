@@ -37,7 +37,13 @@ export default {
     border-radius: 1rem;
 
     #pokemon_search {
-        border-right: 0.5rem solid rgb(119, 0, 0);
+        border-right: 0;
+    }
+
+    @media screen and (min-width: 768px) {
+        #pokemon_search {
+            border-right: 0.5rem solid rgb(119, 0, 0);
+        }
     }
 
 }
